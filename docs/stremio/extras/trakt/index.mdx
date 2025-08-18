@@ -1,7 +1,7 @@
 ---
 title: Trakt
 sidebar_label: Trakt
-description: Learn how to use Trakt with Stremio to get personalised lists and recommendations.
+description: Learn how to make use of lists from different services for a more personalised Stremio experience.
 keywords:
   [
     stremio,
@@ -29,7 +29,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 5
 ---
 
-import AddingLists from "@site/docs/stremio/extras/trakt/traktTvAddon/_adding_lists.mdx";
+import AddingLists from "./trakt-tv-addon/_adding_lists.mdx";
 
 # Using Trakt
 
@@ -101,6 +101,18 @@ If you don't want to create your own lists you can simply only look at the [user
 
 You do not need to setup couchmoney and create your own lists on MDBList but you can, all of this is purely optional, you can have a look at all of them and choose the lists that you want to add to Stremio.
 
+This guide will use the Trakt Lists addon for adding MDBLists, however, there are other addons that support MDBList directly such as:
+
+- [StremThru Lists](https://stremthru.com/lists) - This addon also supports Trakt, AniList, and TMDB.
+- [Stremio MDBList Addon](https://1fe84bc728af-stremio-mdblist.baby-beamup.club/configure) - This addon only supports MDBList and is a good alternative to the Trakt Lists addon if you only want to use MDBList.
+- [AIOLists](https://aiolists.elfhosted.com)
+- [AIOCatalogs](https://aio.pantelx.com/)
+
+I recommend using either the Trakt Lists addon or StremThru Lists:
+
+- Trakt Lists supports selecting alternative sort options while the others do not.
+- StremThru Lists supports many more services and also allows you to use metadata from TMDB or IMDB. You can also shuffle lists for even more discoverability.
+
 ### MDBList
 
 :::info
@@ -112,6 +124,7 @@ However, using other users' public lists does not require a Trakt account.
 You can also use lists created by other users.
 
 I will first go through creating our own lists with our own filters. You do not need to do this and can simply use the lists created by other users.
+I recommend using other peoples lists.
 
 #### Creating our own lists
 
@@ -153,7 +166,9 @@ The list should now be created and you can view it on the [My Lists](https://mdb
 You can browse the top lists on the [top lists](https://mdblist.com/toplists/) page.
 There is also a search bar at the top of the page that you can use to search for lists.
 
-I recommend you to take a look at the MDBList lists from [Gary](https://mdblist.com/lists/garycrawfordgc/) and [Riz](https://mdblist.com/lists/rizreflects/).
+I recommend you to take a look at the MDBList lists from [Gary](https://mdblist.com/lists/garycrawfordgc/), [Riz](https://mdblist.com/lists/rizreflects/) and [Snoak](https://mdblist.com/lists/snoak/).
+
+Lists from Snoak are recommended to be used in order to replace addons like Streaming Catalogs for streaming service catalogues as lists from MDBList are refreshed often and these tend to be more accurate.
 
 Once you have found a list on MDBList, keep the page for the list open in a new tab.
 We will use this later when we are setting up the addon.
@@ -194,7 +209,7 @@ Now, these lists should be visible on your Trakt account.
 
 Now that you have chosen or created the lists you want, we need to add them to Stremio.
 
-1. Go to the [addon configuration page](https://2ecbbd610840-trakt.baby-beamup.club/configure/)
+1. Go to the [addon configuration page](https://trakt.dexter21767.com)
 
 2. If you want to add your own lists that you created using couchmoney or MDBList, you will need to click the `Login to Trakt.tv` button and allow the addon to access your account.
 

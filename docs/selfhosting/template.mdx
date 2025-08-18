@@ -156,9 +156,6 @@ The template is designed to be easily customisable. You can add your own service
 My compose.yaml makes use of profiles to make it easier to deploy only specific services.
 Each individual service has its own profile, so seanime has a profile called `seanime`, and so on.
 
-There are also profiles that are a group of services that are related to each other. For example, the `stremio` profile contains services that are related to Stremio.
-Currently there are only 2 grouped profiles - `stremio` and `indexers`.
-
 The individual profiles are simply the names of the folder names in the `apps` directory.
 
 As every single service has a profile, you must define a profile, either in the `COMPOSE_PROFILES` environment variable or through the `--profile` flag when running the `docker compose` command.
@@ -169,8 +166,7 @@ However, there is a 'required' profile which includes Traefik and Authelia, whic
 After you have chosen which profiles you are going to use, keep them in mind, as you will now need to fill in
 the .env file with the necessary environment variables.
 
-Other than choosing the profiles, you could also modify the root `compose.yaml` file and remove a compose.yaml from the include list.
-e.g. If you wanted to use the stremio profile, but not the TMDB addon, you could remove the `- tmdb-addon/compose.yaml` line under the `include:` section.
+Other than manually adding profiles one by one, you could just use `all` as your profile and modify the root `compose.yaml` file and remove the compose.yaml from the include list for the services you don't want to use.
 
 ## Setup
 
@@ -306,98 +302,8 @@ e.g. If you wanted to use the stremio profile, but not the TMDB addon, you could
 
 - You can also specify the profiles through the `--profile` flag, e.g.
   ```bash
-  docker compose --profile required --profile stremio --profile seanime up -d
+  docker compose --profile required --profile aiostreams up -d --force-recreate
   ```
 
 9. After running the command, it may take some time for the services to start up. Once it is done, you should be able to access them at the hostnames that are defined in
    the root `.env` file.
-
-## Modifying the profiles
-
-You may want to omit some services from the profiles, this is possible by removing the profile from the service in the `compose.yaml` file.
-
-<details>
-<summary>I want to use the stremio profile but don't want the TMDB Addon</summary>
-  <div>
-  
-    Within the `compose.yaml` file, you can remove the `stremio` profile from the `tmdb-addon` and `tmdb-addon_mongo` services.
-    Remove the highlighted lines below:
-
-      ```yaml title="/opt/docker/apps/tmdb-addon/compose.yaml"
-      services:
-        tmdb-addon:
-          image: viren070/tmdb-addon:latest
-          container_name: tmdb-addon
-          restart: unless-stopped
-          expose:
-            - 3232
-          environment:
-            - PORT=3232
-            - TMDB_API=${TMDB_API_KEY?}  # https://www.themoviedb.org/settings/api
-            - FANART_API=${FANART_API_KEY?}  # https://fanart.tv/get-an-api-key/
-            - HOST_NAME=${TMDB_ADDON_HOSTNAME?}
-            - MONGODB_URI=mongodb://mongodb:27017/tmdb
-            - META_TTL=604800  # 1 week
-            - CATALOG_TTL=86400  # 1 day
-            - NO_CACHE=false  # Enable cache, set to true to disable
-          labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.tmdb.rule=Host(`${TMDB_ADDON_HOSTNAME?}`)"
-            - "traefik.http.routers.tmdb.entrypoints=websecure"
-            - "traefik.http.routers.tmdb.tls.certresolver=letsencrypt"
-            - "traefik.http.services.tmdb.loadbalancer.server.port=3232"
-            - "flame.type=app"
-            - "flame.name=TMDB Addon"
-            - "flame.url=https://${TMDB_ADDON_HOSTNAME?}"
-          depends_on:
-            tmdb-addon_mongo:
-              condition: service_healthy
-          profiles:
-            - tmdb-addon
-            // highlight-next-line
-            - stremio
-            - all
-
-        tmdb-addon_mongo:
-          image: mongo:latest
-          container_name: tmdb-addon_mongo
-          restart: unless-stopped
-          volumes:
-            - ${DOCKER_DATA_DIR}/tmdb-addon/db:/data/db
-          healthcheck:
-            test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-            interval: 10s
-            timeout: 10s
-            retries: 5
-            start_period: 40s
-          profiles:
-            - tmdb-addon
-            // highlight-next-line
-            - stremio
-            - all
-
-        ```
-
-      You could instead remove the include line from the root `compose.yaml` for the `tmdb-addon` service.
-      This would mean that the service would not be included in the deployment at all.
-      Adding the 'tmdb-addon' profile to the `DOCKER_COMPOSE_PROFILES` environment variable would also not work unless this line is added back.
-
-      ```yaml title="/opt/docker/apps/compose.yaml"
-
-
-      include:
-        ...
-        - tautulli/compose.yaml
-        // highlight-next-line
-        - tmdb-addon/compose.yaml
-        - torbox-manager/compose.yaml
-        ...
-      networks:
-        default:
-          name: ${DOCKER_NETWORK:-aio_default}
-          external: ${DOCKER_NETWORK_EXTERNAL:-false}
-
-      ```
-
-  </div>
-</details>

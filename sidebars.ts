@@ -50,6 +50,8 @@ const sidebars: SidebarsConfig = {
                 "stremio/extras/debrid-media-manager",
                 "stremio/extras/open-in-stremio",
                 "stremio/extras/discord-integration",
+                "stremio/extras/stremio-community",
+                "stremio/extras/stremio-enhanced",
                 "stremio/extras/pimp-my-stremio",
                 "stremio/extras/stremio-downloader",
               ],

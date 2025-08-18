@@ -6,10 +6,55 @@ description: Share what you're watching on Discord
 
 # Discord Rich Presence
 
-Want to share what you're watching on Stremio with your friends? Wait no more!.
-There are two ways to do this:
+Want to share what you're watching on Stremio with your friends? There are a couple ways to do this, most being limited to desktop users.
 
-### Using PreMiD
+## Stremio Community
+
+**Works On**: Windows
+**Requires**: Discord desktop app running on the same device as Stremio.
+
+[Stremio Community](/stremio/extras/stremio-community) is a community version of the desktop Windows client with additional features, including built-in Discord Rich Presence support.
+It would replace your current Stremio desktop app.
+
+## Discrakt
+
+**Works on:** All platform
+**Requires: ** A Windows, MacOS or Linux device running Discrakt and the Discord desktop app.
+
+[Discrakt](https://github.com/afonsojramos/discrakt) is a bridge between Trakt and Discord that displays what you're watching on Discord.
+As it is a bridge between Trakt and Discord, it works with any app that scrobbles to Trakt, including Stremio, from any device/platform.
+
+However, the Discrakt desktop app/server must be running on the same device that Discord is also running on for it to work.
+There may also be a short delay before the status updates on Discord as it depends on when Stremio scrobbles to Trakt and when Trakt responds to Stremio.
+
+### Creating a Trakt Application
+
+1. Go to the [Trakt API applications page](https://trakt.tv/oauth/applications).
+2. Click on `+ New Application`.
+3. Fill in the form with the following details:
+
+   - `Name`: Discrakt
+   - `Description`: Discrakt is a bridge between Trakt and Discord that displays what you're watching on Discord.
+   - `Redirect URI` to `urn:ietf:wg:oauth:2.0:oob`.
+   - `Permissions`: Check the `/scrobble` permission.
+
+4. Click on `Save App`
+
+### Setting Up Discrakt
+
+1. Download the `credentials.ini` file and the executable for your platform from the [latest Disckrakt release](https://github.com/afonsojramos/discrakt/releases/latest).
+2. Open the `credentials.ini` file in a text editor and fill in the following details:
+
+   - `traktClientId`: The Client ID from the Trakt application you created earlier.
+   - `traktUser`: Your Trakt username.
+   - `traktClientSecret`: The Client Secret from the Trakt application you created earlier.
+
+3. Make sure the executable and the `credentials.ini` file are in the same folder, and then launch the executable. Make sure Discord is also running.
+
+## PreMiD
+
+**Works On**: Stremio Web
+**Requires**: Discord desktop app.
 
 This method requires that you use Stremio Web and have the Discord desktop app installed.
 
@@ -18,11 +63,3 @@ This method requires that you use Stremio Web and have the Discord desktop app i
 3. Open Discord and make sure the `Display current activity as a status message` option is enabled in the Discord settings.
 4. Open [Stremio Web](https://web.stremio.com/) and start watching a movie or series.
 5. The presence should now show up in Discord.
-
-### Using StremioDiscordRichPresence
-
-This method requires you to use the Stremio desktop app and have the Discord desktop app installed.
-
-It uses a third-party modification to Stremio to enable Discord Rich Presence.
-
-You can find the instructions and source code on the [StremioDiscordRichPresence GitHub page](https://github.com/Loukious/StremioDiscordRichPresence?tab=readme-ov-file).

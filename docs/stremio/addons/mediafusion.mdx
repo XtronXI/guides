@@ -37,21 +37,21 @@ To get started, head over to the [configuration page](https://mediafusion.elfhos
 
   - To authorise MediaFusion to your debrid service, you can either click `Authorise`, if present, or otherwise, you can enter your API key in the `Token` field (Struggling to find the API key? [Click here](/stremio/faq#where-can-i-find-my-debrid-api-key))
 
+  - **Streaming Provider Options**:
+    - `Enable <service> Watchlist` - This will enable the a catalogue for the service you configured. It will show content from your debrid account in the catalogue.
+    - `Enable Download via Browser` - This option, once enabled, will provide download streams below each stream in the result list. Clicking the download stream opens the link to the file from your debrid provider in your browser, allowing you to easily download files.
+    - `Only show cached streams` - This will only show streams that are cached on your debrid provider. If you want to see all streams, leave this unchecked.
+
 - **Catalog Configuration:**
 
   Here you can choose which content is available to you through MediaFusion. Simply select the content you want to see. I will provide some notes on specific options below.
 
-  - `Prowlarr Streams` - This will provide you with streams from Prowlarr. You should enable this to get more streams.
-  - `Torrentio Streams` - This will provide streams from either Torrentio or Knightcrawler. On the public ElfHosted instance, it is configured to use KnightCrawler.
-    Although you will get more streams by enabling this, if you already have Torrentio installed, you may want to disable this to avoid duplicate streams.
-  - `Zilean DMM Streams` - This will provide you with streams obtained through [Zilean](https://github.com/iPromKnight/zilean), a [DMM](/stremio/extras/debrid-media-manager) scraper. You should enable this to get more streams.
-  - `Contribution Streams` - Enabling this provide a stream on movies and shows that allow you to upload torrent files or magnet links to MediaFusion for the community.
-    You can read more about this [here](https://www.reddit.com/r/StremioAddons/comments/1cwaqh8/comment/l4w1bw1/)
-  - `Live Sport Events` - This will provide catalogues with ongoing live sports events. You should enable this if you want to watch live sports.
+  {/* You can read more about this [here](https://www.reddit.com/r/StremioAddons/comments/1cwaqh8/comment/l4w1bw1/) */}
+
   - `Live TV` - This will provide catalogues with live TV channels. You should enable this if you want to watch live TV.
   - `Football`, `Other Sports`, etc. - I believe these will provide catalogues with replays of different sports.
-  - `Provider Watchlist Catalog` - This will provide a catalog displaying all the files you have watched using the provider. I leave this unchecked as it is unnecessary clutter.
   - `Show Catalogs in Stremio (& Kodi)` - This will show the catalogues in Stremio. I leave this checked as I want to see the catalogues for the content I have enabled.
+  - `Enable IMDB Metadata Response` - This option allows MediaFusion to provide metadata for IMDB IDs. You can leave this disabled as it will have no effect on Stremio.
 
 - **Parental Guides:**
 
@@ -65,7 +65,7 @@ To get started, head over to the [configuration page](https://mediafusion.elfhos
   :::info
   The certification levels and nudity levels are based on the information provided by IMDB.
   Sometimes, the data on IMDB can be provided by the community.
-  Therefore, the accuracy of the information may not always be accurate.
+  Therefore, the information may not always be accurate.
 
   To see what exact certification levels are covered by each option, see [here](https://github.com/mhdzumair/MediaFusion/blob/876cfd81760f34c9c1cbb48f5814299b1ef2d7de/utils/const.py#L188)
   :::
@@ -89,9 +89,11 @@ To get started, head over to the [configuration page](https://mediafusion.elfhos
     By using MediaFlow, you can:
 
     - Gain access to DRM protected live streams
-    - Use MediaFusion configured with the same debrid provider across different IP addresses. In simple terms, you can use the debrid account from different locations simulateneously (through MediaFusion). As all the streams are proxied through the same server, it will appear as if they are all coming from the same IP address / location.
+    - Use MediaFusion configured with the same debrid provider across different IP addresses. In simple terms, you can use the debrid account from different locations simulateneously (through MediaFusion). As all the streams are proxied through the same server, it will appear as if they are all coming from the same IP address / location. (_This benefit does not apply to you if you use a debrid service that allows multiple IPs to access the same account simultaneously, such as TorBox or Premiumize_)
 
   - **RPDB**: This service allows you to have posters with ratings on them. To use this, you will need to obtain an API key. There is a free tier available. To obtain your API key, see [this question in the FAQ](/stremio/faq#how-do-i-obtain-a-rpdb-api-key)
+
+  - **MDBList**: [MDBList](https://mdblist.com/) is a service that allows you to have curated lists of movies/series that periodically update. You can use lists from community members so you don't have to create your own lists. While MDBList is a great way to have discoverability on Stremio, I'd recommend using separate addons for it rather than through MediaFusion.
 
 Now that MediaFusion has been configured, click `Install in Stremio`. This will open Stremio and prompt you to install the addon. Click Install again and the addon will be installed.
 

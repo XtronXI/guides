@@ -64,16 +64,16 @@ Head over to [Stremio](https://stremio.com/) and either [sign up for an account]
 Here are the instructions for each platform, if you are viewing on a mobile phone, you will need to scroll horizontally to see all the different platform instructions.
 
 :::tip
-Some devices (such as iPhones) do not have a Stremio app.
-In this case, it may be possible to use Stremio through Stremio Web.
+Some devices (such as the Vision Pro) do not have a Stremio app.
+However, it may still be possible to use Stremio through Stremio Web.
 
-In the [Web](?platform=web#downloading-stremio) tab below, you will find device specific instructions on how to use Stremio through Stremio Web.
+In the [Web](?platform=web#downloading-stremio) tab below, you will find device specific instructions on how to use Stremio Web.
 :::
 
 You can also choose your platform below to jump to the instructions for that platform.
 
-- [Web](?platform=web#downloading-stremio)
 - [PC](?platform=pc#downloading-stremio)
+- [iOS / iPadOS](?platform=apple#downloading-stremio)
 - [Android](?platform=android#downloading-stremio)
 - [Android TV](?platform=android-tv#downloading-stremio)
 - [Fire TV](?platform=fire-tv#downloading-stremio)
@@ -83,10 +83,11 @@ You can also choose your platform below to jump to the instructions for that pla
 - [Phillips TV (2024+)](?platform=phillips-tv#downloading-stremio)
 - [Raspberry Pi](?platform=rasberry-pi#downloading-stremio)
 - [Meta Quest](?platform=meta-quest#downloading-stremio)
+- [Stremio Web](?platform=web#downloading-stremio)
 
-```mdx-code-block
 import Web from "./platform/setup/web/_web.mdx";
 import Pc from "./platform/setup/_pc.mdx";
+import Apple from "./platform/setup/_ios.mdx";
 import Android from "./platform/setup/_android.mdx";
 import AndroidTv from "./platform/setup/_android-tv.mdx";
 import FireTv from "./platform/setup/_fire-tv.mdx";
@@ -98,75 +99,43 @@ import RasberryPi from "./platform/setup/_rasberry-pi.mdx";
 import MetaQuest from "./platform/setup/_meta-quest.mdx";
 
 <Tabs className="custom-tabs" queryString="platform">
-
-	<TabItem value="web" label="Web" default>
-
-        <Web/>
-
-	</TabItem>
-
-	<TabItem value="pc" label="PC">
-
-        <Pc/>
-
-	</TabItem>
-
-	<TabItem value="android" label="Android">
-
-        <Android/>
-
-	</TabItem>
-
-	<TabItem value="fire-tv" label="Fire TV">
-
-        <FireTv/>
-
-	</TabItem>
-
-	<TabItem value="android-tv" label="Android TV">
-
-        <AndroidTv/>
-
-	</TabItem>
-
-	<TabItem value="samsung-tv" label="Samsung TVs">
-
-        <SamsungTv/>
-
-	</TabItem>
-
-	<TabItem value="lg-tv" label="LG TVs">
-
-        <LgTv/>
-
-	</TabItem>
-
-        <TabItem value="hisense-tv" label="Hisense TVs">
-
-        <HisenseTv/>
-
-        </TabItem>
-
-        <TabItem value="phillips-tv" label="Phillips TVs">
-
-        <PhillipsTv/>
-
-        </TabItem>
-
-	<TabItem value="rasberry-pi" label="Rasberry Pi">
-
-        <RasberryPi/>
-
-	</TabItem>
-
-	<TabItem value="meta-quest" label="Meta Quest">
-
-        <MetaQuest/>
-
-	</TabItem>
-
+  <TabItem value="pc" label="PC">
+    <Pc />
+  </TabItem>
+  <TabItem value="android" label="Android">
+    <Android />
+  </TabItem>
+  <TabItem value="apple" label="Apple">
+    <Apple />
+  </TabItem>
+  <TabItem value="fire-tv" label="Fire TV">
+    <FireTv />
+  </TabItem>
+  <TabItem value="android-tv" label="Android TV">
+    <AndroidTv />
+  </TabItem>
+  <TabItem value="samsung-tv" label="Samsung TVs">
+    <SamsungTv />
+  </TabItem>
+  <TabItem value="lg-tv" label="LG TVs">
+    <LgTv />
+  </TabItem>
+  <TabItem value="hisense-tv" label="Hisense TVs">
+    <HisenseTv />
+  </TabItem>
+  <TabItem value="phillips-tv" label="Phillips TVs">
+    <PhillipsTv />
+  </TabItem>
+  <TabItem value="rasberry-pi" label="Rasberry Pi">
+    <RasberryPi />
+  </TabItem>
+  <TabItem value="meta-quest" label="Meta Quest">
+    <MetaQuest />
+  </TabItem>
+  <TabItem value="web" label="Web">
+    <Web />
+  </TabItem>
 </Tabs>
-```
 
 ## Configuring Stremio settings
 
@@ -174,6 +143,8 @@ Although Stremio is mostly ready to use out of the box, one setting you should t
 
 And if you are planning on torrenting, then set the torrent profile to Ultra Fast and the cache size to 10GB or infinite.
 If you want an explanation of what these settings do, you can find more info [here](https://github.com/Viren070/guides/issues/121#issuecomment-2727522366).
+
+If you do not see any of these settings on your device, you can skip this, as it is only available on some devices.
 
 ## Debrid Service
 
@@ -449,6 +420,10 @@ and not something that requires you to wait for it to be cached.
 TorBox is a service that is constantly improving and already offers an impressive feature set. If you only watch popular content, you may find TorBox to be more than enough.
 Less popular content may not be cached, but if you're okay with having to add stuff to be cached sometimes, you may find it a good choice.
 
+AllDebrid is a service I would not recommend. As mentioned earlier, it has issues with cache indicators not being accurate. As it's userbase
+is smaller than Real Debrid, crowdsourced cache databases are even less accurate than they already are (This is even truer for Debrid-Link). You will also encounter issues with using third-party addons as each IP
+address has to be permitted by you through an email they send you.
+
 [EasyDebrid](https://paradise-cloud.com/products) is a new service that uses Premiumize's cache at a lower price. It also does not have any IP restrictions.
 It is supported by most popular addons (Torrentio, Comet, MediaFusion, StremThru) as well as Debridio, so addon support should not be an issue.
 
@@ -638,7 +613,7 @@ I will now go through some addons that provide content to Stremio.
 These addons are the backbone to our on-demand streaming experience.
 They provide the video content that allows us to watch anything we want.
 
-You can have a look at this [community hosted addon list](https://beta.stremio-addons.net/) to view all the available addons.
+You can have a look at this [community hosted addon list](https://stremio-addons.net/) to view all the available addons.
 This list will have more addons listed than the ones shown in the Stremio app.
 
 Please refer to the key below to understand the different types of addons.
@@ -671,11 +646,13 @@ As Stremio addons are hosted on a server, an influx of users or other potential 
 Torrentio has a history of going down due to the large number of users.
 You may want to install a backup addon, such as Comet, in case Torrentio goes down.
 
+A good way of utilising multiple addons is to use [AIOStreams](/stremio/addons/aiostreams). This addon lets you combine multiple addons
+into one, allowing you to merge their results together while removing duplicates. AIOStreams offers many more features but it is out of scope for this section of the guide.
+
 In this guide, I will be providing public instances of addons.
 Some of these are hosted by ElfHosted, but they have put in place a rate limit to prevent abuse.
 However, you most likely will not hit this rate limit.
 
-```mdx-code-block
 import Torrentio from "./addons/torrentio.mdx";
 import Comet from "./addons/comet.mdx";
 import MediaFusion from "./addons/mediafusion.mdx";
@@ -695,23 +672,37 @@ import StreamAsia from "./addons/streamasia.mdx";
 import StremioGDrive from "./addons/stremio-gdrive.mdx";
 
 <StremioAddon name="Torrentio" addonComponent={Torrentio} debrid torrent />
-<StremioAddon name="Comet" addonComponent={Comet} debrid torrent/>
-<StremioAddon name="MediaFusion" addonComponent={MediaFusion} torrent debrid/>
-<StremioAddon name="StremThru Torz" addonComponent={StremThruTorz} torrent debrid />
+<StremioAddon name="Comet" addonComponent={Comet} debrid torrent />
+<StremioAddon name="MediaFusion" addonComponent={MediaFusion} torrent debrid />
+<StremioAddon
+  name="StremThru Torz"
+  addonComponent={StremThruTorz}
+  torrent
+  debrid
+/>
 <StremioAddon name="Jackettio" addonComponent={Jackettio} debrid />
-<StremioAddon name="Orion Stremio Addon" addonComponent={OrionStremioAddon} torrent debrid/>
+<StremioAddon
+  name="Orion Stremio Addon"
+  addonComponent={OrionStremioAddon}
+  torrent
+  debrid
+/>
 <StremioAddon name="DMM Cast" addonComponent={DmmCast} debrid />
 <StremioAddon name="StremThru Store" addonComponent={StremThruStore} debrid />
 <StremioAddon name="Debrid Search" addonComponent={DebridSearch} debrid />
 <StremioAddon name="Peerflix" addonComponent={Peerflix} torrent flag="Spain" />
-<StremioAddon name="StremioFR" addonComponent={StremioFR} debrid flag="France"/>
-<StremioAddon name="TorBox"  addonComponent={TorboxAddon} debrid usenet />
+<StremioAddon
+  name="StremioFR"
+  addonComponent={StremioFR}
+  debrid
+  flag="France"
+/>
+<StremioAddon name="TorBox" addonComponent={TorboxAddon} debrid usenet />
 <StremioAddon name="Easynews" addonComponent={EasynewsAddon} usenet />
 <StremioAddon name="Easynews+" addonComponent={EasynewsPlusAddon} usenet />
 <StremioAddon name="Easynews++" addonComponent={EasynewsPlusPlusAddon} usenet />
 <StremioAddon name="StreamAsia" addonComponent={StreamAsia} http debrid />
-<StremioAddon name="Stremio GDrive" addonComponent={StremioGDrive} http/>
-```
+<StremioAddon name="Stremio GDrive" addonComponent={StremioGDrive} http />
 
 #### Live TV & Sports
 
@@ -751,11 +742,8 @@ These are the addons that provide the different catalogues (the rows of movies/s
 There is one built-in addon called cinemeta which provides Popular and Featured Movies and Series.
 However, there may be some shows that provide more results with the TMDB addon, so I highly recommend that you install the TMDB addon.
 
-:::tip
-It is possible to see ratings on the posters of the movies and shows.
-
-Please see [this question in the FAQ](faq#is-it-possible-to-see-the-ratings-of-movies-and-shows-on-the-posters).
-:::
+Much of these catalogue addons can be replaced by using lists from [MDBList](https://mdblist.com/). This is expanded on in the [Lists](extras/lists) section of this guide.
+I recommend looking into it as catalogues from MDBList can be highly customised as well as refreshing more often.
 
 :::warning
 The order in which you install the addons is important. Stremio will display the catalogues in the order that you install the addons.
@@ -785,6 +773,8 @@ These addons will provide catalogues that pull movies and shows from popular str
 
 While you can use one of these separate addons to get the catalogues, it's also available in the TMDB addon which you may prefer as it also allows
 using a separate language for metadata.
+
+I also recommend using lists from [MBDList](https://mdblist.com/), particularly from [Snoak](https://mdblist.com/lists/snoak), for this, as I expand upon in the [Lists](extras/lists) section of this guide as they will be more accurate and up to date.
 
 ```mdx-code-block
 import StreamingCatalogs from "./addons/streaming-catalogs.mdx";
@@ -836,13 +826,13 @@ import PopularPeople from "./addons/popular-people.mdx";
 
 ### Subtitle Addons
 
-Here are a list of working subtitle addons. This list may become outdated, please check the [community addons list with the subtitle filter](https://beta.stremio-addons.net/addons?categories=subtitles&sort=popular) if none of these work.
+Here are a list of working subtitle addons. This list may become outdated, please check the [community addons list with the subtitle filter](https://stremio-addons.net/addons?categories=subtitles&sort=popular) if none of these work.
 
-```mdx-code-block
 import OpenSubtitles from "./addons/opensubtitles-v3.mdx";
 import OpenSubtitlesPro from "./addons/opensubtitles-pro.mdx";
 import SubDL from "./addons/subdl-subtitles.mdx";
 import SubSource from "./addons/subsource-subtitles.mdx";
+import SubHero from "./addons/subhero.mdx";
 import YifySubtitles from "./addons/yifysubtitles-by-dexter21767.mdx";
 import MSubtitles from "./addons/msubtitles.mdx";
 import LegendasDivx from "./addons/legendasdivx.mdx";
@@ -851,10 +841,13 @@ import LegendasDivx from "./addons/legendasdivx.mdx";
 <StremioAddon name="OpenSubtitles Pro" addonComponent={OpenSubtitlesPro} />
 <StremioAddon name="SubDL Subtitles" addonComponent={SubDL} />
 <StremioAddon name="SubSource Subtitles" addonComponent={SubSource} />
-<StremioAddon name="yifysubtitles by dexter21767" addonComponent={YifySubtitles} />
+<StremioAddon name="SubHero" addonComponent={SubHero} />
+<StremioAddon
+  name="yifysubtitles by dexter21767"
+  addonComponent={YifySubtitles}
+/>
 <StremioAddon name="MSubtitles" addonComponent={MSubtitles} />
 <StremioAddon name="LegendasDivx" addonComponent={LegendasDivx} />
-```
 
 ## End of inital setup
 
